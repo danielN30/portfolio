@@ -1,0 +1,217 @@
+---
+title: "Daniel Nazaretian"
+format:
+  html:
+    theme: cosmo
+    css: resume.css
+    page-layout: full
+    toc: false
+    embed-resources: true
+  
+---
+<style>
+body {
+  background-color: #f0f0f0;
+}
+</style>
+
+
+::: contact-bar
+[dannaz999\@outlook.com](mailto:dannaz999@outlook.com) \| [linkedin.com/in/daniel-nazaretian-175a2334b](https://www.linkedin.com/in/daniel-nazaretian-175a2334b)
+:::
+
+## About Me
+
+I am an Actuarial Science student at Monash University with a keen interest in financial markets and trading. I'm drawn to the challenge of finding structure in noisy data: whether that's building machine learning models to explore market behaviour, or competing in trading simulations.
+
+Outside of this, I enjoy learning languages, currently studying Japanese at university, and Armenian in my own time. I bring the same pattern recognition I apply to chess and poker into how I think about risk and decision-making.
+
+------------------------------------------------------------------------
+
+:::::::::: sidebar-layout
+::: sidebar-left
+## Education
+
+**Monash University** [2025 – 2028]{.right}
+
+*Bachelor of Commerce (Finance, Econometrics) and Bachelor of Actuarial Science*
+
+**Monash University** [2025 – 2028]{.right}
+
+*Diploma of Languages (Japanese)*
+
+**Kilvington Grammar School** [2019 – 2024]{.right}
+
+-   A-Grade Debating Team Member
+-   Student Representative Council Member (2019 – 2023)
+-   Chess Club Member
+
+## Skills
+
+| Skill | Where I've used it |
+|:--------------------|:--------------------------------------------------|
+| **R** | Forex ML model, Nous Data Analytics project, Monash coursework (Introduction to Data Analysis) |
+| **Excel** |  Monash Coursework (Business and Economic Statistics, Corporate Finance), Student Tracking for Tutoring|
+| **C++** | Monash Coursework (Introduction to Programming) |
+
+
+:::
+
+:::::::: sidebar-right
+
+## Volunteering
+
+**Monash University Computing and Commerce Association** [October 2025 – Present]{.right}
+
+***Publications Officer***
+
+Collaborated with other publications officers to create the 2026 First Year Guide \| [View on CCA Website](https://www.ccamonash.com.au/2026-first-year-guide)
+
+Articles will slowly be released throughout the year.
+
+Here's a sneak peek of one of my articles: *What is it? Quantitative Trading Explained* \| [View on CCA Website](https://www.ccamonash.com.au/articles)
+
+Have you heard the words quantitative trading? Maybe you have heard about its reputation being one of the most difficult industries to be in, and get into. But what actually is it? And how can you prepare for it?....
+
+**EACH — Volunteer Digital Mentor**
+
+-   Teaching foundational computer skills at community events, strengthening digital inclusion
+
+## Projects
+
+1. The problem — what were you trying to find out or solve? One short paragraph.
+2. The approach — what data, what method, why that method. This is where the code snippets live.
+3. The output — screenshots of graphs, model summaries, results.
+4. What you learned / what you'd do differently — this is the part most people skip but it's actually the most impressive. It shows self-awareness and genuine engagement with the work rather than just "I ran a regression."
+
+
+
+::: project-card
+**Forex Time Macro Exploration** 
+-   Built an exploratory machine learning model in R to test hypotheses and learn data-driven approaches to market behaviour at different times
+
+Here are the variables I used for regression. I came up with these variables based on research of what would be most useful, and adapted my variables several times. I scraped this data from the [Forex Factory website](https://www.forexfactory.com), and the TradingView app.
+
+I found that when a variable is not statistically significant in an R regression output it is referred to as a non-significant predictor or insignificant variable. 
+
+*Variables used*
+
+``` r
+str(macrodata)
+# 'data.frame': 206 obs. of 13 variables:
+# $ Return.close.10  : int  0 0 1 0 1 0 0 0 0 0 ...
+# $ Largest.move     : num  14.2 -18.1 19.1 -16.5 15.9 ...
+# $ Macro.position   : int  1 2 1 2 1 2 1 2 1 2 ...
+# $ ny_Session       : chr  "PM" "PM" "AM" "AM" ...
+# $ Severe.news      : int  0 0 0 0 0 0 0 0 1 1 ...
+# $ Major.news       : int  1 1 1 1 0 0 4 4 2 2 ...
+# $ Moderate.news    : int  4 4 4 4 0 0 4 4 2 2 ...
+# $ Hour..UTC.       : int  1 3 9 10 9 10 1 3 9 10 ...
+# $ Day              : int  6 6 6 6 2 2 2 2 3 3 ...
+# $ month_end        : int  0 0 0 0 1 1 1 1 1 1 ...
+# $ Movement._before : chr  "Bull" "Bull" "Bear" "Bull" ...
+```
+
+*Linear regression*
+
+``` r
+training <- macrodata[1:14, ]
+test     <- macrodata[15:29, ]
+
+fit <- lm(Return.close.10 ~ Largest.move + Macro.position +
+            ny_Session + Severe.news + Major.news + Moderate.news +
+            non.US.bank.holiday + US.News.within.hour +
+            Hour..UTC. + Day + Month_end + Movement._before,
+          data = training)
+```
+
+Overall, no single macroeconomic variable was found to be a statistically significant predictor of returns, suggesting that forex price behaviour at specific times may be more complex than simple linear relationships can capture.
+:::
+
+::: project-card
+**Nous Data Analytics Virtual Experience**
+
+Performed exploratory analysis of ABS datasets in R, identifying correlations between teacher-student ratios and school performance
+
+[View Full Presentation](nous for portfolio.html)
+
+``` r
+colnames(data)[2] <- "State"
+colnames(data)[5] <- "ST_Ratio"
+
+QLD_all <- data %>% filter(State == "QLD")
+mean(QLD_all$ST_Ratio)
+
+library(ggplot2)
+
+ggplot(QLD_all, aes(x = factor(Year), y = ST_Ratio, fill = Affiliation)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(x = "Year", y = "Student-Teacher Ratio",
+       title = "Student-Teacher Ratios by Affiliation in QLD") +
+  theme_minimal()
+```
+
+![Queensland Student-Teacher Ratios by school affiliation](nousgraph.png){fig-align="center" width="500"}
+:::
+
+## Competitions
+
+
+**CME Trading Group Challenge**
+
+*Test-drive the world's top futures products in Trading Challenges using real-time market data in a risk-free simulated environment.*
+
+::: cert-card
+[Top 6%]{.cert-badge}
+
+**CME Group August Trading Competition**
+
+![](cmeaugust.jpg)
+:::
+
+::: cert-card
+**Economics Student Society Australia Consulting Competition**
+
+![](essacertificate.png)
+:::
+
+::: cert-card
+**Flow Traders Trading Competition**
+:::
+::::::::
+::::::::::
+
+**UNIHACK 2026**
+
+**What it is**
+
+UNIHACK is one of Australia's largest student hackathons, funded by the European Union. Competing as part of a small team over a 48-hour weekend, the challenge is to design and build a working software solution from scratch under time pressure.
+
+**My role**
+
+As the non-programmer on the team, my contribution focused on problem framing, solution design, and presenting the final product — the parts of a hackathon that are just as important as the code itself. I also contributed code snippets where I could, working alongside teammates to understand and participate in the technical side.
+
+**Code snippet**
+
+*(To be updated during/after the event)*
+```r
+# placeholder — update with actual code after UNIHACK
+```
+
+**Result**
+
+*(To be updated after the event)*
+
+**What I learned**
+
+*(To be updated after the event)*
+
+## Hobbies & Interests
+
+**Poker** —  I'm drawn to the mathematical side: pot odds, expected value, and decision-making under uncertainty.
+
+**Chess** —  I enjoy the strategic depth and pattern recognition that chess demands. I've competed at an interschool level, which pushed me to think more deliberately about the decisions I make, and how people respond to them.
+
+**Futsal** —  I play casually as a way to switch off from analytical work. It's good exercise and a reminder that teamwork and communication are important everywhere.
+
+**Languages** — Currently studying Japanese at university, and Armenian in my own time. I enjoy the discipline of language learning, and I find it to be just as difficult as my more analytical coursework.
