@@ -1,0 +1,204 @@
+---
+title: "Daniel Nazaretian"
+format:
+  html:
+    theme: cosmo
+    css: resume.css
+    page-layout: full
+    toc: false
+    embed-resources: true
+---
+
+<style>
+body { background-color: #121212 !important; }
+</style>
+
+<div class="contact-bar">
+<a href="mailto:dannaz999@outlook.com">dannaz999@outlook.com</a> |
+<a href="https://www.linkedin.com/in/daniel-nazaretian-175a2334b">linkedin.com/in/daniel-nazaretian</a> |
+<a href="https://github.com/danielN30">Full code on GitHub</a>
+</div>
+
+## About Me
+
+<div class="sp-player">
+<div class="sp-now-playing">
+<div class="sp-album">🎵</div>
+<div>
+<div class="sp-track">Daniel Nazaretian <span class="sp-eq"><span></span><span></span><span></span><span></span></span></div>
+<div class="sp-artist">Actuarial Science · Finance · Data</div>
+</div>
+</div>
+<div class="sp-bar-wrap"><div class="sp-bar-fill"></div></div>
+<div style="display:flex;justify-content:space-between;font-size:11px;color:#B3B3B3;"><span>Year 2</span><span>2028</span></div>
+</div>
+
+<p style="color:#B3B3B3;font-size:14px;line-height:1.75;">Like a well-curated playlist, I believe the best results come from combining the right elements in the right order. I'm an Actuarial Science and Finance student at Monash University, drawn to the challenge of finding structure in noisy data — whether that's building machine learning models to predict AFL outcomes, competing in trading simulations, or analysing markets.</p>
+
+<p style="color:#B3B3B3;font-size:14px;line-height:1.75;">My approach to problem-solving mirrors how I listen to music: I look for patterns others miss, I pay attention to the underlying rhythm beneath the noise, and I know that the best insights, like the best tracks, reveal themselves only when you listen carefully.</p>
+
+<p style="color:#B3B3B3;font-size:14px;line-height:1.75;">Outside of numbers, I'm studying Japanese at university and Armenian on my own time — because understanding how people communicate in different languages gives you a different lens on everything. I bring the same pattern recognition I apply to chess and poker into how I think about risk and decision-making. Every position is a dataset. Every move is a hypothesis.</p>
+
+<hr style="border:none;border-top:1px solid #333;margin:32px 0;" />
+
+<div class="sidebar-layout">
+<div class="sidebar-left">
+
+<div class="sp-nav">
+<div class="sp-nav-label">🎧 Your Library</div>
+<a href="#about-me">🏠 About</a>
+<a href="#projects">🚀 Projects</a>
+<a href="#competitions">🏆 Competitions</a>
+<a href="#volunteering">🤝 Volunteering</a>
+<a href="#skills">⚙️ Skills</a>
+</div>
+
+</div>
+<div class="sidebar-right">
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+
+<!-- LEFT: PROJECTS -->
+<div>
+<h2 id="projects" style="color:#FFFFFF;font-size:22px;font-weight:700;border-bottom:1px solid #333;padding-bottom:10px;margin-bottom:16px;margin-top:0;">▶ Projects</h2>
+
+<p style="color:#FFFFFF;font-weight:700;margin-bottom:4px;">AFL Prediction Website</p>
+<p style="color:#B3B3B3;font-size:13px;font-style:italic;">To be updated</p>
+
+<div class="project-card">
+<p style="color:#FFFFFF;font-weight:700;font-size:15px;margin-bottom:8px;">Forex Time Macro Exploration</p>
+
+<p style="color:#B3B3B3;font-size:14px;">Built an exploratory machine learning model in R to test hypotheses and learn data-driven approaches to market behaviour at different times.</p>
+
+<p style="color:#B3B3B3;font-size:14px;">Here are the variables I used for regression. I came up with these variables based on research of what would be most useful, and adapted my variables several times. I scraped this data from the <a href="https://www.forexfactory.com">Forex Factory website</a>, and the TradingView app.</p>
+
+<p style="color:#B3B3B3;font-size:14px;">I found that when a variable is not statistically significant in an R regression output it is referred to as a non-significant predictor or insignificant variable.</p>
+
+<p style="color:#B3B3B3;font-style:italic;font-size:13px;">Variables used</p>
+
+```r
+str(macrodata)
+# 'data.frame': 206 obs. of 13 variables:
+# $ Return.close.10  : int  0 0 1 0 1 0 0 0 0 0 ...
+# $ Largest.move     : num  14.2 -18.1 19.1 -16.5 15.9 ...
+# $ Macro.position   : int  1 2 1 2 1 2 1 2 1 2 ...
+# $ ny_Session       : chr  "PM" "PM" "AM" "AM" ...
+# $ Severe.news      : int  0 0 0 0 0 0 0 0 1 1 ...
+# $ Major.news       : int  1 1 1 1 0 0 4 4 2 2 ...
+# $ Moderate.news    : int  4 4 4 4 0 0 4 4 2 2 ...
+# $ Hour..UTC.       : int  1 3 9 10 9 10 1 3 9 10 ...
+# $ Day              : int  6 6 6 6 2 2 2 2 3 3 ...
+# $ month_end        : int  0 0 0 0 1 1 1 1 1 1 ...
+# $ Movement._before : chr  "Bull" "Bull" "Bear" "Bull" ...
+```
+
+<p style="color:#B3B3B3;font-style:italic;font-size:13px;">Linear regression</p>
+
+```r
+training <- macrodata[1:14, ]
+test     <- macrodata[15:29, ]
+
+fit <- lm(Return.close.10 ~ Largest.move + Macro.position +
+            ny_Session + Severe.news + Major.news + Moderate.news +
+            non.US.bank.holiday + US.News.within.hour +
+            Hour..UTC. + Day + Month_end + Movement._before,
+          data = training)
+```
+
+<p style="color:#B3B3B3;font-size:14px;">Overall, no single macroeconomic variable was found to be a statistically significant predictor of returns, suggesting that forex price behaviour at specific times may be more complex than simple linear relationships can capture.</p>
+
+</div>
+
+<div class="project-card">
+<p style="color:#FFFFFF;font-weight:700;font-size:15px;margin-bottom:8px;">Nous Data Analytics Virtual Experience</p>
+
+<p style="color:#B3B3B3;font-size:14px;">Performed exploratory analysis of ABS datasets in R, identifying correlations between teacher-student ratios and school performance.</p>
+
+```r
+colnames(data)[2] <- "State"
+colnames(data)[5] <- "ST_Ratio"
+
+QLD_all <- data %>% filter(State == "QLD")
+mean(QLD_all$ST_Ratio)
+
+ggplot(QLD_all, aes(x = factor(Year), y = ST_Ratio, fill = Affiliation)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(x = "Year", y = "Student-Teacher Ratio",
+       title = "Student-Teacher Ratios by Affiliation in QLD") +
+  theme_minimal()
+```
+
+![Queensland Student-Teacher Ratios by school affiliation](nousgraph.png){fig-align="center" width="100%"}
+
+</div>
+</div>
+
+<!-- RIGHT: COMPETITIONS -->
+<div>
+<h2 id="competitions" style="color:#FFFFFF;font-size:22px;font-weight:700;border-bottom:1px solid #333;padding-bottom:10px;margin-bottom:16px;margin-top:0;">▶ Competitions</h2>
+
+<p style="color:#FFFFFF;font-weight:700;margin-bottom:4px;">CME Group Trading Competition — August</p>
+<p style="color:#B3B3B3;font-size:13px;font-style:italic;">Test-drive the world's top futures products in Trading Challenges using real-time market data in a risk-free simulated environment.</p>
+
+<div class="cert-card">
+<span class="cert-badge">Top 6%</span>
+<img src="cmeaugust.jpg" style="border-radius:6px;max-width:100%;margin:12px 0;display:block;" />
+<p style="color:#FFFFFF;font-weight:700;margin-bottom:6px;">Challenges</p>
+<p style="color:#B3B3B3;font-size:14px;">The biggest challenge was making trading decisions under pressure with real time market data moving constantly. Unlike studying markets in theory, the competition forced us to act quickly and commit to positions without overthinking. Reading and interpreting charts in the moment, such as identifying trends, entry points, and when to cut losses, was far harder in practice than it looked on paper. There were moments where the market moved against my position and the instinct to panic and exit early was difficult to resist.</p>
+</div>
+
+<div class="cert-card">
+<p style="color:#FFFFFF;font-weight:700;margin-bottom:8px;">Economics Student Society Australia Consulting Competition</p>
+<img src="essacertificate.png" style="border-radius:6px;max-width:100%;margin:12px 0;display:block;" />
+</div>
+
+<div class="cert-card">
+<p style="color:#FFFFFF;font-weight:700;margin-bottom:8px;">Flow Traders Trading Challenge</p>
+<p style="color:#B3B3B3;font-style:italic;font-size:14px;">To be updated</p>
+</div>
+
+<hr style="border:none;border-top:1px solid #333;margin:24px 0;" />
+
+<p style="color:#FFFFFF;font-weight:700;font-size:16px;margin-bottom:12px;">UNIHACK 2026</p>
+
+<p style="color:#FFFFFF;font-weight:600;margin-bottom:4px;">What it is</p>
+<p style="color:#B3B3B3;font-size:14px;">UNIHACK is one of Australia's largest student hackathons, funded by the European Union. Competing as part of a small team over a 48-hour weekend, the challenge is to design and build a working software solution from scratch under time pressure.</p>
+
+<p style="color:#FFFFFF;font-weight:600;margin-bottom:4px;">My role</p>
+<p style="color:#B3B3B3;font-size:14px;">As the non-programmer on the team, my contribution focused on problem framing, solution design, and presenting the final product. I also contributed code snippets where I could, working alongside teammates to understand and participate in the technical side.</p>
+
+<p style="color:#FFFFFF;font-weight:600;margin-bottom:4px;">Code snippet</p>
+<p style="color:#B3B3B3;font-style:italic;font-size:13px;">(To be updated during/after the event)</p>
+
+```r
+# placeholder — update with actual code after UNIHACK
+```
+
+<p style="color:#FFFFFF;font-weight:600;margin-bottom:4px;">Result</p>
+<p style="color:#B3B3B3;font-style:italic;font-size:14px;">(To be updated after the event)</p>
+
+<p style="color:#FFFFFF;font-weight:600;margin-bottom:4px;">What I learned</p>
+<p style="color:#B3B3B3;font-style:italic;font-size:14px;">(To be updated after the event)</p>
+
+</div>
+
+</div>
+
+<h2 id="volunteering" style="color:#FFFFFF;font-size:22px;font-weight:700;border-bottom:1px solid #333;padding-bottom:10px;margin:40px 0 16px;">▶ Volunteering</h2>
+
+<p><strong>Monash University Computing and Commerce Association</strong> <span style="float:right;color:#B3B3B3;font-size:13px;">October 2025 – Present</span></p>
+<p style="color:#B3B3B3;font-style:italic;">Publications Officer</p>
+<p style="color:#B3B3B3;font-size:14px;">Collaborated with other publications officers to create the 2026 First Year Guide | <a href="https://www.ccamonash.com.au/2026-first-year-guide">View on CCA Website</a></p>
+<p style="color:#B3B3B3;font-size:14px;">Articles will slowly be released throughout the year.</p>
+<p style="color:#B3B3B3;font-size:14px;">Here's a sneak peek of one of my articles: <em>What is it? Quantitative Trading Explained</em> | <a href="https://www.ccamonash.com.au/articles">View on CCA Website</a></p>
+<p style="color:#B3B3B3;font-size:14px;">Have you heard the words quantitative trading? Maybe you have heard about its reputation being one of the most difficult industries to be in, and get into. But what actually is it? And how can you prepare for it?...</p>
+
+<h2 id="skills" style="color:#FFFFFF;font-size:22px;font-weight:700;border-bottom:1px solid #333;padding-bottom:10px;margin:40px 0 16px;">▶ Skills</h2>
+
+<p><strong>Technical:</strong> Excel · R · C++</p>
+<p><strong>Languages:</strong> English (Native) · Japanese (University) · Armenian (Self-study)</p>
+<p><strong>Interests:</strong> Futsal · Chess · Poker</p>
+<p><strong>Certifications:</strong> DCF Modelling (Coursera)</p>
+
+</div>
+</div>
