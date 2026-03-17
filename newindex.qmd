@@ -1,0 +1,245 @@
+---
+title: "Daniel Nazaretian"
+format:
+  html:
+    theme: cosmo
+    css: resume.css
+    page-layout: full
+    toc: false
+    embed-resources: true
+  
+---
+
+<style>
+body {
+  background-color: #121212;
+}
+</style>
+
+::: contact-bar
+[dannaz999\@outlook.com](mailto:dannaz999@outlook.com) \| [linkedin.com/in/daniel-nazaretian-175a2334b](https://www.linkedin.com/in/daniel-nazaretian-175a2334b) \|
+[Full code on github](https://github.com/danielN30)
+:::
+
+## About Me
+
+<div class="about-music">
+<div class="now-playing">
+<div class="album-art">🎵</div>
+<div class="track-info">
+<div class="track-name">Daniel Nazaretian <span class="playing-indicator"><span></span><span></span><span></span><span></span></span></div>
+<div class="artist-name">Actuarial Science · Finance · Data</div>
+</div>
+</div>
+<div class="progress-bar"><div class="progress-fill"></div></div>
+<div class="time-labels"><span>Year 2</span><span>2028</span></div>
+</div>
+
+Like a well-curated playlist, I believe the best results come from combining the right elements in the right order. I'm an Actuarial Science and Finance student at Monash University, drawn to the challenge of finding structure in noisy data — whether that's building machine learning models to predict AFL outcomes, competing in trading simulations, or analysing markets.
+
+My approach to problem-solving mirrors how I listen to music: I look for patterns others miss, I pay attention to the underlying rhythm beneath the noise, and I know that the best insights, like the best tracks, reveal themselves only when you listen carefully.
+
+Outside of numbers, I'm studying Japanese at university and Armenian on my own time — because understanding how people communicate in different languages gives you a different lens on everything. I bring the same pattern recognition I apply to chess and poker into how I think about risk and decision-making. Every position is a dataset. Every move is a hypothesis.
+
+------------------------------------------------------------------------
+
+:::::::::: sidebar-layout
+::: sidebar-left
+
+<div class="playlist-nav">
+
+**🎧 Library**
+
+[🏠 About](#about-me)
+
+[💼 Work Experience](#work-experience)
+
+[🚀 Projects](#projects)
+
+[🏆 Competitions](#competitions)
+
+[🤝 Volunteering](#volunteering)
+
+[⚙️ Skills](#skills)
+
+</div>
+
+:::
+
+:::::::: sidebar-right
+
+## Work Experience
+
+**QS Schools** [August 2025 – Present]{.right}
+
+***Teacher***
+
+- Teaching Maths and English classes of ~20 students, supporting improved academic achievement and student engagement
+
+**Apex Tuition** [January 2025 – Present]{.right}
+
+***Academic Tutor***
+
+- Mentored ~10 students throughout their studies, improving assessment grades by 15% on average
+
+---
+
+## Projects
+
+**AFL Prediction Website**
+
+_To be updated_
+
+::: project-card
+**Forex Time Macro Exploration** 
+-   Built an exploratory machine learning model in R to test hypotheses and learn data-driven approaches to market behaviour at different times
+
+Here are the variables I used for regression. I came up with these variables based on research of what would be most useful, and adapted my variables several times. I scraped this data from the [Forex Factory website](https://www.forexfactory.com), and the TradingView app.
+
+I found that when a variable is not statistically significant in an R regression output it is referred to as a non-significant predictor or insignificant variable. 
+
+*Variables used*
+
+``` r
+str(macrodata)
+# 'data.frame': 206 obs. of 13 variables:
+# $ Return.close.10  : int  0 0 1 0 1 0 0 0 0 0 ...
+# $ Largest.move     : num  14.2 -18.1 19.1 -16.5 15.9 ...
+# $ Macro.position   : int  1 2 1 2 1 2 1 2 1 2 ...
+# $ ny_Session       : chr  "PM" "PM" "AM" "AM" ...
+# $ Severe.news      : int  0 0 0 0 0 0 0 0 1 1 ...
+# $ Major.news       : int  1 1 1 1 0 0 4 4 2 2 ...
+# $ Moderate.news    : int  4 4 4 4 0 0 4 4 2 2 ...
+# $ Hour..UTC.       : int  1 3 9 10 9 10 1 3 9 10 ...
+# $ Day              : int  6 6 6 6 2 2 2 2 3 3 ...
+# $ month_end        : int  0 0 0 0 1 1 1 1 1 1 ...
+# $ Movement._before : chr  "Bull" "Bull" "Bear" "Bull" ...
+```
+
+*Linear regression*
+
+``` r
+training <- macrodata[1:14, ]
+test     <- macrodata[15:29, ]
+
+fit <- lm(Return.close.10 ~ Largest.move + Macro.position +
+            ny_Session + Severe.news + Major.news + Moderate.news +
+            non.US.bank.holiday + US.News.within.hour +
+            Hour..UTC. + Day + Month_end + Movement._before,
+          data = training)
+```
+
+Overall, no single macroeconomic variable was found to be a statistically significant predictor of returns, suggesting that forex price behaviour at specific times may be more complex than simple linear relationships can capture.
+:::
+
+::: project-card
+**Nous Data Analytics Virtual Experience**
+
+Performed exploratory analysis of ABS datasets in R, identifying correlations between teacher-student ratios and school performance
+
+``` r
+colnames(data)[2] <- "State"
+colnames(data)[5] <- "ST_Ratio"
+
+QLD_all <- data %>% filter(State == "QLD")
+mean(QLD_all$ST_Ratio)
+
+library(ggplot2)
+
+ggplot(QLD_all, aes(x = factor(Year), y = ST_Ratio, fill = Affiliation)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  labs(x = "Year", y = "Student-Teacher Ratio",
+       title = "Student-Teacher Ratios by Affiliation in QLD") +
+  theme_minimal()
+```
+
+![Queensland Student-Teacher Ratios by school affiliation](nousgraph.png){fig-align="center" width="500"}
+:::
+
+## Competitions
+
+**CME Group Trading Competition— August**
+
+*Test-drive the world's top futures products in Trading Challenges using real-time market data in a risk-free simulated environment.*
+
+::: cert-card
+[Top 6%]{.cert-badge}
+
+![](cmeaugust.jpg) 
+
+_Challenges_
+
+The biggest challenge was making trading decisions under pressure with real time market data moving constantly. Unlike studying markets in theory, the competition forced us to act quickly and commit to positions without overthinking.
+Reading and interpreting charts in the moment, such as identifying trends, entry points, and when to cut losses, was far harder in practice than it looked on paper. There were moments where the market moved against my position and the instinct to panic and exit early was difficult to resist.
+
+:::
+
+::: cert-card
+**Economics Student Society Australia Consulting Competition**
+
+![](essacertificate.png)
+:::
+
+::: cert-card
+**Flow Traders Trading Challenge**
+
+_To be updated_
+:::
+
+---
+
+**UNIHACK 2026**
+
+**What it is**
+
+UNIHACK is one of Australia's largest student hackathons, funded by the European Union. Competing as part of a small team over a 48-hour weekend, the challenge is to design and build a working software solution from scratch under time pressure.
+
+**My role**
+
+As the non-programmer on the team, my contribution focused on problem framing, solution design, and presenting the final product. I also contributed code snippets where I could, working alongside teammates to understand and participate in the technical side.
+
+**Code snippet**
+
+*(To be updated during/after the event)*
+```r
+# placeholder — update with actual code after UNIHACK
+```
+
+**Result**
+
+*(To be updated after the event)*
+
+**What I learned**
+
+*(To be updated after the event)*
+
+---
+
+## Volunteering
+
+**Monash University Computing and Commerce Association** [October 2025 – Present]{.right}
+
+***Publications Officer***
+
+Collaborated with other publications officers to create the 2026 First Year Guide \| [View on CCA Website](https://www.ccamonash.com.au/2026-first-year-guide)
+
+Articles will slowly be released throughout the year.
+
+Here's a sneak peek of one of my articles: *What is it? Quantitative Trading Explained* \| [View on CCA Website](https://www.ccamonash.com.au/articles)
+
+Have you heard the words quantitative trading? Maybe you have heard about its reputation being one of the most difficult industries to be in, and get into. But what actually is it? And how can you prepare for it?....
+
+---
+
+## Skills
+
+**Technical:** Excel · R · C++
+
+**Languages:** English (Native) · Japanese (University) · Armenian (Self-study)
+
+**Interests:** Futsal · Chess · Poker
+
+**Certifications:** DCF Modelling (Coursera)
+
+::::::::
+::::::::::
